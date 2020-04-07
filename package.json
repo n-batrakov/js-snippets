@@ -1,0 +1,19 @@
+{
+  "name": "code-snippets",
+  "version": "0.1.0",
+  "description": "Various code samples & snippets",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "n.m.batrakov",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.11.0",
+    "jest": "^25.2.7",
+    "tslint": "^6.1.1",
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "^3.8.3"
+  }
+}
