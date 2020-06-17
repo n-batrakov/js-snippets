@@ -1,3 +1,5 @@
+export const assertNever = (_: never) => {}
+
 export const head  = <T = any>([x]: T[]) => x
 export const tail  = <T = any>([, ...x]: T[]) => x
 export const last  = <T = any>(xs: T[]) => xs.length === 0 ? undefined : xs[xs.length - 1]
