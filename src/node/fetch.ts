@@ -15,9 +15,9 @@ const request = async (uri: string, opts: RequestInit): Promise<Response> => {
     let req = makeRequest(uri, opts, res)
 
     req
-      .on('timeout', () => req.destroy(new Error('Request timed out')))
-      .on('error', rej)
-      .end()
+    .on('timeout', () => req.destroy(new Error('Request timed out')))
+    .on('error', rej)
+    .end()
   })
 }
 

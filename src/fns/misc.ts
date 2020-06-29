@@ -15,6 +15,6 @@ export const range = (len: number, start: number = 0) => Array(len).fill(0).map(
 export const alphabet = range(26, 97).map(x => String.fromCharCode(x))
 
 export const max = <T>(gt: (a: T, b: T) => boolean, init: T) => (xs: T[]): T => xs.reduce(
-    (prev, next) => gt(prev, next) ? prev : next,
-    init,
-  )
+  (prev, next) => gt(prev, next) ? prev : next,
+  init,
+)

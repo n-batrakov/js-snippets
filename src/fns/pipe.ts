@@ -13,19 +13,19 @@ export function pipe(...fns: Fn<any, any>[]) {
 
 
 function sample() {
-    const scale = (x: number) => x * 100
-    const ceil = Math.ceil
-    const toLocaleString = (x: number) => x.toLocaleString()
-    const concat = (appendix: string) => (x: string) => x.concat(appendix)
+  const scale = (x: number) => x * 100
+  const ceil = Math.ceil
+  const toLocaleString = (x: number) => x.toLocaleString()
+  const concat = (appendix: string) => (x: string) => x.concat(appendix)
 
-    // Equivalent to:
-    // x => concat('%')(toLocaleString(ceil(scale(x))))
-    const toPercent = pipe(
-        scale,
-        ceil,
-        toLocaleString,
-        concat('%'),
-    )
+  // Equivalent to:
+  // x => concat('%')(toLocaleString(ceil(scale(x))))
+  const toPercent = pipe(
+    scale,
+    ceil,
+    toLocaleString,
+    concat('%'),
+  )
 
-    console.log(toPercent(0.01)) // OUTPUTS: "1%"
+  console.log(toPercent(0.01)) // OUTPUTS: "1%"
 }

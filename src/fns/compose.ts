@@ -12,19 +12,19 @@ export function compose(...fns: Fn<any, any>[]) {
 }
 
 function sample() {
-    const scale = (x: number) => x * 100
-    const ceil = Math.ceil
-    const toLocaleString = (x: number) => x.toLocaleString()
-    const concat = (appendix: string) => (x: string) => x.concat(appendix)
+  const scale = (x: number) => x * 100
+  const ceil = Math.ceil
+  const toLocaleString = (x: number) => x.toLocaleString()
+  const concat = (appendix: string) => (x: string) => x.concat(appendix)
 
-    // Equivalent to:
-    // x => concat('%')(toLocaleString(ceil(scale(x))))
-    const toPercent = compose(
-        concat('%'),
-        toLocaleString,
-        ceil,
-        scale,
-    )
+  // Equivalent to:
+  // x => concat('%')(toLocaleString(ceil(scale(x))))
+  const toPercent = compose(
+    concat('%'),
+    toLocaleString,
+    ceil,
+    scale,
+  )
 
-    console.log(toPercent(0.01)) // OUTPUTS: "1%"
+  console.log(toPercent(0.01)) // OUTPUTS: "1%"
 }

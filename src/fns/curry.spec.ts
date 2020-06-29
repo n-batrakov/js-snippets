@@ -17,56 +17,56 @@ export function curry<A, B, C, D>(f: F3<A, B, C, D>): CF3<A, B, C, D>
 export function curry<A, B, C, D, E>(f: F4<A, B, C, D, E>): CF4<A, B, C, D, E>
 
 export function curry(fn: any): any {
-    return (...args: any[]) => args.length === fn.length
-        ? fn.call(undefined, ...args)
-        : curry(fn.bind(undefined, ...args))
+  return (...args: any[]) => args.length === fn.length
+    ? fn.call(undefined, ...args)
+    : curry(fn.bind(undefined, ...args))
 }
 
 describe('curry', () => {
-    it('can curry 0-arry', () => {
-        let f = () => 42
+  it('can curry 0-arry', () => {
+    let f = () => 42
 
-        let expected = 42
-        let actual = curry(f)()
+    let expected = 42
+    let actual = curry(f)()
 
-        expect(actual).toEqual(expected)
-    })
+    expect(actual).toEqual(expected)
+  })
 
-    it('can curry 1-arry', () => {
-        let inc = (a: number) => a + 1
+  it('can curry 1-arry', () => {
+    let inc = (a: number) => a + 1
 
-        let expected = 42
-        let actual = curry(inc)(41)
+    let expected = 42
+    let actual = curry(inc)(41)
 
-        expect(actual).toEqual(expected)
-    })
+    expect(actual).toEqual(expected)
+  })
 
-    it('can curry 2-arry', () => {
-        let mul = (a: number, b: number) => a * b
+  it('can curry 2-arry', () => {
+    let mul = (a: number, b: number) => a * b
 
-        let expected = 42
-        let actual = curry(mul)(2)(21)
+    let expected = 42
+    let actual = curry(mul)(2)(21)
 
-        expect(actual).toEqual(expected)
-    })
+    expect(actual).toEqual(expected)
+  })
 
-    it('can curry 3-arry', () => {
-        let join = (a: string, b: string, c: string) => `${a} ${b} ${c}`
+  it('can curry 3-arry', () => {
+    let join = (a: string, b: string, c: string) => `${a} ${b} ${c}`
 
-        let expected = 'One Two Three'
-        let actual = curry(join)('One')('Two')('Three')
+    let expected = 'One Two Three'
+    let actual = curry(join)('One')('Two')('Three')
 
-        expect(actual).toEqual(expected)
-    })
+    expect(actual).toEqual(expected)
+  })
 
-    it('can partially apply multiple arguments at once', () => {
-        let join = (a: string, b: string, c: string) => `${a} ${b} ${c}`
+  it('can partially apply multiple arguments at once', () => {
+    let join = (a: string, b: string, c: string) => `${a} ${b} ${c}`
 
-        let expected = 'One Two Three'
+    let expected = 'One Two Three'
 
-        // Have to fight TypeScript here
-        let actual = (curry(join) as any)('One', 'Two')('Three')
+    // Have to fight TypeScript here
+    let actual = (curry(join) as any)('One', 'Two')('Three')
 
-        expect(actual).toEqual(expected)
-    })
+    expect(actual).toEqual(expected)
+  })
 })
