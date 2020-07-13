@@ -17,7 +17,7 @@ const randomBytes = (len: number) => new Array(len).fill(undefined).map(randomBy
 
 const toHex = (byte: number) => byte.toString(16).padStart(2, '0')
 
-const group = (groupLengths: number[], separator: string) => {
+const group = (groupLengths: number[], separator: string) => () => {
   let i = 0
   let j = 0
 
@@ -34,15 +34,22 @@ const group = (groupLengths: number[], separator: string) => {
 const formatUuid = group([4, 2, 2, 2, 6], '-')
 
 export const uuid = () =>
-  randomBytes(16).map(toHex).reduce(formatUuid, '')
+  randomBytes(16).map(toHex).reduce(formatUuid(), '')
 
 
 describe('uuid', () => {
+  let uuidRegexp = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
+
   it('generates uuid', () => {
-    let actual = uuid()
+    expect(uuid()).toMatch(uuidRegexp)
+  })
 
-    let expected = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
+  it('can be called twice', () => {
+    let a = uuid()
+    let b = uuid()
 
-    expect(actual).toMatch(expected)
+    expect(a).not.toEqual(b)
+    expect(a).toMatch(uuidRegexp)
+    expect(b).toMatch(uuidRegexp)
   })
 })
